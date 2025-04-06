@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="Telefonkonyv" namespace="Telefonkonyv" p1:name="cnTelefonkonyv" p1:Guid="c9c34fca-11d7-4650-b249-90b4079eabfc" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Szemely" entity-set="Személyek" table="Szemelyek" p1:Guid="d9ea9029-e338-41f3-b0a0-383cff664319">
+    <id name="SzemélyId" type="Int16" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="5e682519-4991-4d07-a33f-eeb1fd339b51">
+      <column name="" />
+    </id>
+    <property name="Név" type="String" p1:ValidateRequired="true" p1:Guid="764b0b33-1e6f-40f5-8f19-a778dcab22dd">
+      <column name="" />
+    </property>
+    <property name="Cím" type="String" p1:ValidateRequired="true" p1:Guid="77742263-fee9-4b44-96ac-262da6c35d49">
+      <column name="" />
+    </property>
+    <property name="HelységId" type="Int16" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="cbd0e5b4-20f1-4921-9fce-25bf2b619a36">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Helyseg" entity-set="Helységek" table="Helysegek" p1:Guid="ed211132-1009-4130-88a3-d818eba9cc7d">
+    <id name="HelységId" type="Int16" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c2b94434-ef62-4f94-8b76-fb94e0114eee">
+      <column name="" />
+    </id>
+    <property name="Irányítószám" type="Int16" p1:ValidateRequired="true" p1:Guid="cabd9f98-e595-4e69-a0c8-9ea9f8d6fa1d">
+      <column name="" />
+    </property>
+    <property name="Név" type="String" p1:ValidateRequired="true" p1:Guid="9207cf6b-5299-4ca3-b71d-3b365cf0c80e">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Szam" entity-set="Számok" table="Szamok" p1:Guid="04a15924-7f6d-49b7-9928-7c36e250b5cf">
+    <id name="SzámId" type="Int16" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="fea75ea8-2117-4e82-9d97-7c92d8f15f93">
+      <column name="" />
+    </id>
+    <property name="SzámSztring" type="String" p1:ValidateRequired="true" p1:Guid="21108a67-e8c4-4171-bd00-e0cb190f488a">
+      <column name="" />
+    </property>
+  </class>
+  <associations>
+    <association name="Helyseg_Szemely" cardinality="OneToMany" p1:Guid="a66aa011-ab31-4891-bed7-3ad5e96d6015">
+      <end1 multiplicity="ZeroOrOne" name="Helység" class="Szemely" relation-class="Helyseg" constrained="True" lazy="False" p1:Guid="af2d34cc-c58d-49ab-ac16-3009d7cbad63">
+        <property name="HelységId" />
+      </end1>
+      <end2 multiplicity="Many" name="Személyek" class="Helyseg" relation-class="Szemely" lazy="False" p1:Guid="bd11aae6-67a3-4593-b5d5-638b206d6cfe">
+        <property name="HelységId" />
+      </end2>
+    </association>
+    <association name="Szemely_Szam" cardinality="ManyToMany" table="SzemelyekSzamok" p1:Guid="7c5998d2-c84e-4f39-83d1-be39ded50704">
+      <end1 multiplicity="Many" name="Személyek" class="Szam" relation-class="Szemely" lazy="False" p1:Guid="27c4017d-e1b8-400a-b98f-6d4c38248717">
+        <property name="SzemélyId" />
+      </end1>
+      <end2 multiplicity="Many" name="Számok" class="Szemely" relation-class="Szam" lazy="False" p1:Guid="734f530a-d9c4-4bf1-a1da-88cc1b56ea37">
+        <property name="SzámId" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
